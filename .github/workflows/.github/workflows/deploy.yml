@@ -1,0 +1,20 @@
+name: Mon Premier Workflow DevOps
+
+on:
+  push:
+    branches: [ "main" ] # Déclenche le workflow dès que vous sauvegardez votre code
+
+jobs:
+  verification_du_code:
+    runs-on: ubuntu-latest # GitHub allume un ordinateur gratuit pour vous
+    steps:
+    - uses: actions/checkout@v4 # Étape 1 : Il prend vos fichiers
+    - name: Verifier la syntaxe Python
+      run: python -m py_compile sqlconnection.py # Étape 2 : Il cherche les erreurs
+
+  deploiement_azure:
+    needs: verification_du_code # Attend que le premier cercle soit vert
+    runs-on: ubuntu-latest
+    steps:
+    - name: Propulser les fichiers vers le serveur
+      run: echo "Ici, GitHub Actions envoie proprement le code vers Azure App Service !"
