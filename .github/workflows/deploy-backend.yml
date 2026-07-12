@@ -20,11 +20,13 @@ jobs:
       - name: Set up Python version
         uses: actions/setup-python@v5
         with:
-          python-version: '3.14'
+          python-version: '3.11'
 
       # 3. Installation temporaire des dépendances pour valider le build
       - name: Install dependencies
         run: |
+          sudo apt-get update
+          sudo apt-get install -y unixodbc-dev
           cd backend
           python -m pip install --upgrade pip
           pip install -r requirements.txt
@@ -37,7 +39,7 @@ jobs:
           zip -r ../deploy.zip .
           cd ..
 
-      # 5. Déploiement sécurisé sur votre serveur Azure App Service
+      # 5. Déploiement sécurisé sur le serveur Azure App Service
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
