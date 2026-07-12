@@ -1,0 +1,46 @@
+name: Deploy Python Backend to Azure App Service
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'backend/**' # Déclenche le pipeline uniquement si vous modifiez le dossier backend
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Récupération du code source depuis GitHub
+      - name: Checkout GitHub Repository
+        uses: actions/checkout@v4
+
+      # 2. Configuration de l'environnement Python stable (3.11) compatible Azure
+      - name: Set up Python version
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+
+      # 3. Installation temporaire des dépendances pour valider le build
+      - name: Install dependencies
+        run: |
+          cd backend
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          cd ..
+
+      # 4. Compression (Zip) exclusive du contenu du dossier backend
+      - name: Package Backend Folder
+        run: |
+          cd backend
+          zip -r ../deploy.zip .
+          cd ..
+
+      # 5. Déploiement sécurisé sur votre serveur Azure App Service
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'api-sql-formulaire' #    nom de App Service sur Azure
+          publish-profile: ${{ secrets.AZURE_APP_SERVICE_PUBLISH_PROFILE }} # Ce secret utilisera le profil téléchargé
+          package: 'deploy.zip'
