@@ -1,0 +1,5 @@
+flask==3.0.3
+flask-cors==4.0.1
+pyodbc==5.1.0
+newrelic==9.10.0
+gunicorn==22.0.0

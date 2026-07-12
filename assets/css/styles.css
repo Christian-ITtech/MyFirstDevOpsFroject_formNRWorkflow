@@ -11,8 +11,18 @@
     --ok:#2F6F4E;
     --err:#A83B3B;
   }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;height:100%;}
+
+  * { 
+    box-sizing:border-box;
+  }
+
+  html,body {
+    margin:0;
+    padding:0;
+    height:100%;
+  }
+
+
   body{
     font-family:'IBM Plex Sans', system-ui, sans-serif;
     color:var(--text);
@@ -63,14 +73,22 @@
     overflow:hidden;
     box-shadow:0 20px 40px -18px rgba(0,0,0,0.6);
   }
-  .badge::before{
-    content:"";
-    position:absolute;
-    top:-40px; right:-40px;
-    width:140px; height:140px;
-    background:radial-gradient(circle, rgba(184,147,95,0.18), transparent 70%);
+  .badge::before {
+  content: ""; /* Obligatoire en CSS pour qu'un pseudo-élément s'affiche à l'écran, même s'il ne contient pas de texte */
+  position: absolute; /* Extrait cet élément du flux normal pour le placer au millimètre près en haut à droite du conteneur parent (.badge) */
+  top: -40px; /* Décale le rond lumineux de 40 pixels vers le haut, à l'extérieur de la zone visible du badge */
+  right: -40px; /* Décale le rond lumineux de 40 pixels vers la droite, à l'extérieur également */
+  width: 140px; /* Donne une largeur fixe de 140 pixels au carré virtuel qui va accueillir la lumière */
+  height: 140px; /* Donne une hauteur fixe de 140 pixels pour former un carré parfait */
+  background: radial-gradient(circle, rgba(184, 147, 95, 0.18), transparent 70%); /* Crée un rond lumineux doré très doux au centre (18% d'opacité) qui s'estompe progressivement vers une transparence totale à 70% de son rayon */
+ }
+ 
+  .badge-row {
+    display:flex; 
+    align-items:center; 
+    gap:14px;
   }
-  .badge-row{display:flex; align-items:center; gap:14px;}
+
   .avatar{
     width:52px; height:52px;
     border-radius:8px;
