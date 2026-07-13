@@ -5,8 +5,9 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 
-# Activation du CORS pour autoriser uniquement votre site en ligne Namecheap
-CORS(app, resources={r"/*": {"origins": ["https://form.cgramitservice.me"]}})
+# Autorise toutes les origines Web à envoyer des données de formulaire de manière sécurisée
+CORS(app, resources={r"/*": {"origins": "*"}})
+
 
 def get_db_connection():
     """Récupère la chaîne de connexion sécurisée depuis les variables Azure."""
