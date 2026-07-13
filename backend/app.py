@@ -5,7 +5,7 @@ from flask_cors import CORS
 
 app = Flask(__name__)
 
-# Autorise toutes les origines Web à envoyer des données de formulaire de manière sécurisée
+# Autorise toutes les origines Web à envoyer des données de formulaire de manière securisee
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 
