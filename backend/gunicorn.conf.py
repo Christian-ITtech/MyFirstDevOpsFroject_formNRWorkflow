@@ -8,6 +8,7 @@ workers = 2
 timeout = 600 
 loglevel = "info"
 
-# Point d'entrée vers votre application Python
-wsgi_app = "backend.main:app"
+# Point d'entrée mis à jour avec le nouveau nom du fichier (app.py)
+wsgi_app = "backend.app:app"
+
 
