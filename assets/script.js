@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             try {
                 // Envoi à votre API de production sur Azure App Service
-                const reponse = await fetch('https://api-sql-formulaire-b5dsdjf0cxd0bhby.westus3-01.azurewebsites.net/soumettre-formulaire', {
+                const reponse = await fetch('https://api.api-sql-formulaire-b5dsdjf0cxd0bhby.westus3-01.azurewebsites.net/soumettre-formulaire', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
