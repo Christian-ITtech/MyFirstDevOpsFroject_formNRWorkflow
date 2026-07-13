@@ -1,7 +1,13 @@
-# Configuration de production Gunicorn pour Azure App Service
 import os
 
-bind = "0.0.0.0:8000"
-workers = 2  # Limite le nombre de processus pour économiser la mémoire gratuite
-timeout = 600  # Monte le délai d'attente à 10 minutes pour éviter le ContainerTimeout
+# Configuration de production Gunicorn pour Azure App Service
+port = os.environ.get("PORT", 8000)
+bind = f"0.0.0.0:{port}"
+
+workers = 2 
+timeout = 600 
 loglevel = "info"
+
+# Point d'entrée vers votre application Python
+wsgi_app = "backend.main:app"
+
