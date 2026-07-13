@@ -1,7 +1,7 @@
 import os
 import pyodbc
 from flask import Flask, request, jsonify
-from flask_cors import CORS
+from Flask_cors import CORS
 
 app = Flask(__name__)
 
